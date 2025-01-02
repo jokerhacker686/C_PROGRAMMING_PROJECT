@@ -4,7 +4,9 @@
 #include <conio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
+int Date_Time();
 int menu();
 int Add_tasks();
 int Mark_task_as_completed();
@@ -18,9 +20,30 @@ struct check
     int status, trasfer;
 } value;
 
+int Date_Time()
+{   
+    int SIZE = 256;
+    char Time[SIZE];
+    time_t curtime;
+    struct tm *loctime;
+
+    // Get the current time.
+    curtime = time(NULL);
+
+    // Convert it to local time
+    // representation.
+    loctime = localtime(&curtime);
+
+    // Convert local time into String time format 
+    strftime(Time, SIZE, "\nDate :- %d-%b-%Y %I:%M:%S %p\n", loctime);
+
+    // Print out the date and time
+    fputs(Time, stdout);
+}
+
 int menu()
 {
-    printf("\nWELECOME TO MY PROJECT\n");
+    printf("WELECOME TO MY PROJECT\n");
     printf("1. ADD TASKS\n");
     printf("2. MARK TASK AS COMPLETE\n");
     printf("3. VIEW TASKS\n");
@@ -237,6 +260,7 @@ int main()
     char user_file[50] = "hello.txt";
     while (option != 6)
     {
+        Date_Time();
         menu();
         scanf("%d", &option);
         switch (option)
