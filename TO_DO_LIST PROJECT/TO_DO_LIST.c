@@ -290,7 +290,7 @@ int main()
             printf("YOU ARE CHOOSE WRONG OPTION.");
             break;
         }
-        getchar();
+        getch();
     }
     return 0;
 }
